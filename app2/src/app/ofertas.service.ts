@@ -16,7 +16,7 @@ export class OfertaService {
     public getOfertas(): Promise<Oferta[]> {
         //efetuar um requisição HTTP
         
-        return this.http.get<Oferta[]>('http://localhost:3000/ofertas')
+        return this.http.get<Oferta[]>('http://localhost:3000/ofertas?valor = 29.90')
             .toPromise()
             .then((resposta:any) => resposta)
             
