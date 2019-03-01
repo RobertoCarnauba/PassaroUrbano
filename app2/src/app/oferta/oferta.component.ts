@@ -1,8 +1,9 @@
 import { Oferta } from './../shared/oferta.model';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { OfertaService } from './../ofertas.service';
-import { identity } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-oferta',
@@ -10,7 +11,8 @@ import { identity } from 'rxjs';
   styleUrls: ['./oferta.component.css'],
   providers: [ OfertaService ]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, OnDestroy {
+
 
   public oferta: Oferta
 
@@ -21,11 +23,18 @@ export class OfertaComponent implements OnInit {
 
   ngOnInit() {
     // Retorno da oferta por ID
-    this.ofertaService.getOfertaPorId( this.route.snapshot.params['id'] )
-    .then((oferta: Oferta) =>{
-      this.oferta = oferta
+    this.route.params.subscribe((paramentro: Params)=>{
+      this.ofertaService.getOfertaPorId( paramentro.id )
+      .then((oferta: Oferta) =>{
+        this.oferta = oferta
+      })
+        
     })
     
+
+    
   }
+   ngOnDestroy() {
+   }
 
 }

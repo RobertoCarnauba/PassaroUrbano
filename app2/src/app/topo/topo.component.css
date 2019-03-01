@@ -26,3 +26,8 @@
 .active {
     color: #FFF 
 }
+
+.form-control {
+    margin: 24px 0 10px 15px;
+}
+
